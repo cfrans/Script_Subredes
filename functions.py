@@ -50,3 +50,11 @@ def binaryToElevado(n):
     elif n == 11111111:
         elevado = 8
     return(elevado)
+
+def exibirSubredes(i, primeiroEndereco):
+    print(f"Subrede número {i+1}:")
+    print(f"ID:                 192.168.0.{(primeiroEndereco * (i+1))}")
+    print(f"Primeiro Host:      192.168.0.{((primeiroEndereco * (i+1)) + 1)}")
+    print(f"Último Host:        192.168.0.{((primeiroEndereco * (i+2)) - 2)}")
+    print(f"Broadcast:          192.168.0.{((primeiroEndereco * (i+2)) - 1)}")
+    print("------------------------------------")
