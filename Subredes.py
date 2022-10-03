@@ -8,7 +8,8 @@ print("------Subredes by CFRANS 2022-------")
 print("(Momentâneamente funcionando somente com IP Classe C)")
 print("------------------------------------")
 print("1 - Descobrir a máscara e os ranges a partir da quantidade necessária de subredes.")
-print("2 - Transformar máscara CIDR")
+print("2 - Descobrir as subredes a partir da máscara.")
+print("3 - Transformar máscara CIDR.")
 print("0 - Encerrar.")
 
 opcaoCorreta = False
@@ -20,13 +21,14 @@ while opcaoCorreta == False:
         print((Back.RED) + (Fore.WHITE))
         print("Informe somente o número, sem letras.")
         print(Style.RESET_ALL)
-    if int(opcao) > 2 or int(opcao) < 0:
+    if int(opcao) > 3 or int(opcao) < 0:
         print("Opção incorreta.")
     else:
         opcaoCorreta = True
 
 if int(opcao) == 0:
     sys.exit(0)
+
 elif int(opcao) == 1:
     subredesNecessarias = int(input("Insira a quantidade de subredes desejada: "))
 
@@ -54,7 +56,38 @@ elif int(opcao) == 1:
             print("------------------------------------")
         
         subredesNecessarias = int(input("Insira a quantidade de sub redes desejada, ou 0 para encerrar: "))
+
 elif int(opcao) == 2:
+    mascara = int(input("Insira a máscara desejada: 255.255.255."))
+    binary = int((functions.decimalToBinary(mascara)))
+    elevado = (functions.binaryToElevado(binary))
+    subredesPossiveis = (2 ** elevado) - 2
+    primeiroEndereco = (256 - mascara)
+
+    print(f"Quantidade de subredes possíveis: {subredesPossiveis}.")
+    print("Informe a quantidade desejada para exibir os detalhes")
+    opcao = input("Ou digite T para ver todas: ")
+
+    if opcao == "T" or opcao == "t":
+        for i in range(subredesPossiveis):
+            print(f"Subrede número {i+1}:")
+            print(f"ID:                 192.168.0.{(primeiroEndereco * (i+1))}")
+            print(f"Primeiro Host:      192.168.0.{((primeiroEndereco * (i+1)) + 1)}")
+            print(f"Último Host:        192.168.0.{((primeiroEndereco * (i+2)) - 2)}")
+            print(f"Broadcast:          192.168.0.{((primeiroEndereco * (i+2)) - 1)}")
+            print("------------------------------------")
+    elif int(opcao) > subredesPossiveis:
+        print("Quantidade informada é maior que a quantidade possível.")
+    elif int(opcao) < subredesPossiveis:
+        for i in range(int(opcao)):
+            print(f"Subrede número {i+1}:")
+            print(f"ID:                 192.168.0.{(primeiroEndereco * (i+1))}")
+            print(f"Primeiro Host:      192.168.0.{((primeiroEndereco * (i+1)) + 1)}")
+            print(f"Último Host:        192.168.0.{((primeiroEndereco * (i+2)) - 2)}")
+            print(f"Broadcast:          192.168.0.{((primeiroEndereco * (i+2)) - 1)}")
+            print("------------------------------------")
+
+elif int(opcao) == 3:
     cidr = int(input("Insira o número CIDR: "))
     bitsExtras = cidr - 24
     binary = functions.decBitsToBinary(bitsExtras)
