@@ -1,3 +1,20 @@
+def instaladorDependencias():
+    import subprocess
+    import sys
+    print("--------------------------------------------------")
+    print("A biblioteca Colorama será instalada.")
+    input("Pressione enter para continuar")
+
+    print("--------------------------------------------------")
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', 
+    'colorama'])
+    print("--------------------------------------------------")
+    print("Colorama instalado com sucesso.")
+    print("--------------------------------------------------")
+
+    print("Inicie novamente o script")
+    sys.exit(0)
+
 def binaryToDecimal(binary):
     binary1 = binary
     decimal, i, n = 0, 0, 0

@@ -1,6 +1,11 @@
 import functions
 import sys
-from colorama import Back, Fore, Style, init
+try:
+    from colorama import Back, Fore, Style, init
+except ModuleNotFoundError:
+        print('O módulo Colorama não foi encontrado. Iniciando o instalador de dependências...')
+        functions.instaladorDependencias()
+
 init() # inicializa as cores
 
 print("------------------------------------")
