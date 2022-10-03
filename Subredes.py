@@ -5,8 +5,10 @@ init() # inicializa as cores
 
 print("------------------------------------")
 print("------Subredes by CFRANS 2022-------")
+print("(Momentâneamente funcionando somente com IP Classe C)")
 print("------------------------------------")
 print("1 - Descobrir a máscara e os ranges a partir da quantidade necessária de subredes.")
+print("2 - Transformar máscara CIDR")
 print("0 - Encerrar.")
 
 opcaoCorreta = False
@@ -18,7 +20,7 @@ while opcaoCorreta == False:
         print((Back.RED) + (Fore.WHITE))
         print("Informe somente o número, sem letras.")
         print(Style.RESET_ALL)
-    if int(opcao) > 1 or int(opcao) < 0:
+    if int(opcao) > 2 or int(opcao) < 0:
         print("Opção incorreta.")
     else:
         opcaoCorreta = True
@@ -34,7 +36,7 @@ elif int(opcao) == 1:
         while ((2 ** elevado) - 2) < subredesNecessarias:
             elevado += 1
 
-        binary = (functions.elevadoToBinary(elevado))
+        binary = (functions.decBitsToBinary(elevado))
         decimalHost = (functions.binaryToDecimal(binary))
 
         primeiroEndereco = (256 - decimalHost)
@@ -52,6 +54,14 @@ elif int(opcao) == 1:
             print("------------------------------------")
         
         subredesNecessarias = int(input("Insira a quantidade de sub redes desejada, ou 0 para encerrar: "))
+elif int(opcao) == 2:
+    cidr = int(input("Insira o número CIDR: "))
+    bitsExtras = cidr - 24
+    binary = functions.decBitsToBinary(bitsExtras)
+    mascara = functions.binaryToDecimal(binary)
+    if cidr > 24:
+        print("IP Classe C")
+        print(f"Máscara 255.255.255.{mascara}")
 
 # TODO: Configurar o colorama
 # TODO: Colocar numero maximo possivel de subredes

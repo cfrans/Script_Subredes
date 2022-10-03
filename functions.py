@@ -8,21 +8,21 @@ def binaryToDecimal(binary):
         i += 1
     return(decimal)   
 
-def elevadoToBinary(elevado):
-    if elevado == 1:
+def decBitsToBinary(n):
+    if n == 1:
         binary = 10000000
-    elif elevado == 2:
+    elif n == 2:
         binary = 11000000
-    elif elevado == 3:
+    elif n == 3:
         binary = 11100000
-    elif elevado == 4:
+    elif n == 4:
         binary = 11110000
-    elif elevado == 5:
+    elif n == 5:
         binary = 11111000
-    elif elevado == 6:
+    elif n == 6:
         binary = 11111100
-    elif elevado == 7:
+    elif n == 7:
         binary = 11111110
-    elif elevado == 8:
+    elif n == 8:
         binary = 11111111
     return(binary)
