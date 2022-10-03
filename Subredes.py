@@ -8,14 +8,15 @@ except ModuleNotFoundError:
 
 init() # inicializa as cores
 
-print("------------------------------------")
-print("------Subredes by CFRANS 2022-------")
-print("(Momentâneamente funcionando somente com IP Classe C)")
-print("------------------------------------")
+print(f"{Fore.GREEN}------------------------------------")
+print(f"{Fore.YELLOW}------Subredes by CFRANS 2022-------")
+print(f"{Fore.LIGHTBLACK_EX}(Momentâneamente funcionando somente com IP Classe C)")
+print(f"{Fore.GREEN}------------------------------------")
+print(Fore.LIGHTBLUE_EX)
 print("1 - Descobrir a máscara e os ranges a partir da quantidade necessária de subredes.")
 print("2 - Descobrir as subredes a partir da máscara.")
 print("3 - Transformar máscara CIDR.")
-print("0 - Encerrar.")
+print(f"{Fore.LIGHTRED_EX}0 - Encerrar.{Fore.WHITE}")
 
 opcaoCorreta = False
 while opcaoCorreta == False:
@@ -56,6 +57,7 @@ elif int(opcao) == 1:
         for i in range(subredesNecessarias):
             functions.exibirSubredes(i, primeiroEndereco)
         
+        print(Fore.WHITE)
         subredesNecessarias = int(input("Insira a quantidade de sub redes desejada, ou 0 para encerrar: "))
 
 # 2 - Descobrir as subredes a partir da máscara
